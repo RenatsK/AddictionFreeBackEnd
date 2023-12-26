@@ -1,7 +1,8 @@
 const express = require('express');
 const register = express.Router();
-const db = require('../db/dbConn'); // Adjust the path
+const db = require('../db/dbConn');
 
+// '/' is like index. It is possible to add someting after '/' so it could be in a link in a web browser 
 register.post('/', (req, res) => {
   const { name, surname, email, password } = req.body;
 
