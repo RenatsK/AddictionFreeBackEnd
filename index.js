@@ -14,6 +14,9 @@ app.use(bodyParser.json());
 const register_routes = require('./routes/register.js')
 app.use('/register', register_routes)
 
+const login_routes = require('./routes/login.js')
+app.use('/login', login_routes)
+
 app.listen(port, () => {
   console.log(`Server is running on port ${port}`);
 });
