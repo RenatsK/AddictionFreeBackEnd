@@ -13,8 +13,8 @@ login.post('/', async (req, res) => {
                 return;
             }
             if (results.length > 0) {
-                res.json({ success: true });
-                
+                const user = results[0]; // Assuming the first result is the user data
+                res.json({ success: true, user });
             } else {
                 res.status(401).json({ success: false, message: 'Invalid email or password' });
             }
