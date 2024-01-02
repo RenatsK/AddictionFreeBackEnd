@@ -8,7 +8,6 @@ function getUserByEmail(email) {
         reject(err);
       } else {
         resolve(results[0]);
-        console.log(results);
       }
     });
   });

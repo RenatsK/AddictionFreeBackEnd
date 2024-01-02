@@ -5,7 +5,7 @@ const db = require('./db/dbConn.js');
 const getUserByEmail = require('./api/userByEmail.js');
 
 const app = express();
-const port = 8111;
+const port = 28111;
 
 app.use(cors());
 app.use(bodyParser.json());
@@ -13,7 +13,7 @@ app.use(bodyParser.json());
 app.post('/login', async (req, res) => {
   try {
     const userEmail = req.body.email;
-    const user = await getUserByEmail(userEmail); // Fix the function name
+    const user = await getUserByEmail(userEmail);
 
     if (user) {
       res.json({ success: true, user });
