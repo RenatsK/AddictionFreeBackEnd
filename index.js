@@ -5,7 +5,7 @@ const db = require('./db/dbConn.js');
 const getUserByEmail = require('./api/userByEmail.js');
 
 const app = express();
-const port = 28111;
+const port = 8111;
 
 app.use(cors());
 app.use(bodyParser.json());

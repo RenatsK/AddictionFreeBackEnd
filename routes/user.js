@@ -4,7 +4,6 @@ const db = require('../db/dbConn');
 
 user.get("/userByEmail", (req, res) => {
     const { email } = req.query;
-  
     const query = `SELECT * FROM User WHERE Email = ?`;
   
     db.query(query, [email], (err, results) => {
@@ -18,9 +17,9 @@ user.get("/userByEmail", (req, res) => {
   });
 
 user.post("/userAddiction", (req, res) => {
-    const {addictionReason, email, AddictionID } = req.body;
-    const sqlReason = 'UPDATE User SET Reason = ?, AddictionID = ? WHERE Email = ?';
-    db.query(sqlReason, [addictionReason, AddictionID, email], (err, result) => {
+    const {addictionReason, email, AddictionID, addictionStartDate } = req.body;
+    const sqlReason = 'UPDATE User SET Reason = ?, AddictionID = ?, StartDate = ? WHERE Email = ?';
+    db.query(sqlReason, [addictionReason, AddictionID, addictionStartDate, email ], (err, result) => {
         if (err) {
             console.error('Error inserting user:', err);
             res.status(500).json({ message: 'Error inserting reason', error: err.message });
@@ -44,4 +43,16 @@ user.get("/addictionToSelect", (req, res) => {
   });
 });
 
+user.post("/stopwatchUpdate", (req, res) => {
+    const { email, currentDateTime } = req.body;
+    const sqlReason = 'UPDATE User SET StartDate = ? WHERE Email = ?';
+    db.query(sqlReason, [currentDateTime, email ], (err, result) => {
+        if (err) {
+            console.error('Error inserting user:', err);
+            res.status(500).json({ message: 'Error inserting reason', error: err.message });
+        } else {
+            res.status(200).json({ message: 'Inserting successful' });
+        }
+    });
+});
 module.exports = user;
