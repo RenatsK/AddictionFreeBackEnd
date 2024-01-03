@@ -4,7 +4,12 @@ const db = require('../db/dbConn');
 
 user.get("/userByEmail", (req, res) => {
     const { email } = req.query;
-    const query = `SELECT * FROM User WHERE Email = ?`;
+    const query = `
+    SELECT u.*, a.type
+    FROM User u, Addiction a
+    WHERE Email = ? AND
+    u.AddictionID = a.AddictionID
+    `;
   
     db.query(query, [email], (err, results) => {
       if (err) {
