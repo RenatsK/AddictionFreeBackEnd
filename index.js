@@ -39,6 +39,9 @@ app.use('/user', user_routes);
 const threads_routes = require('./routes/threads.js');
 app.use('/threads', threads_routes);
 
+const comments_routes = require('./routes/comments.js');
+app.use('/comments', comments_routes);
+
 app.listen(port, () => {
   console.log(`Server is running on port ${port}`);
 });
