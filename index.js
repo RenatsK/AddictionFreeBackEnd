@@ -10,22 +10,6 @@ const port = 8111;
 app.use(cors());
 app.use(bodyParser.json());
 
-app.post('/login', async (req, res) => {
-  try {
-    const userEmail = req.body.email;
-    const user = await getUserByEmail(userEmail);
-
-    if (user) {
-      res.json({ success: true, user });
-    } else {
-      res.json({ success: false, message: 'Invalid email or login failed' });
-    }
-  } catch (error) {
-    console.error('Error during login:', error);
-    res.status(500).json({ success: false, message: 'Internal server error' });
-  }
-});
-
 //Post to the database from the front-end
 const register_routes = require('./routes/register.js');
 app.use('/register', register_routes);

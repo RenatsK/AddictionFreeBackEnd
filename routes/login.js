@@ -4,7 +4,6 @@ const db = require('../db/dbConn');
 
 login.post('/', async (req, res) => {
     const { email, password } = req.body;
-
     try {
         db.query('SELECT * FROM User WHERE email = ? AND password = ?', [email, password], function (error, results) {
             if (error) {
@@ -12,11 +11,12 @@ login.post('/', async (req, res) => {
                 res.status(500).json({ success: false, message: 'Error during login' });
                 return;
             }
+
             if (results.length > 0) {
                 const user = results[0];
                 res.json({ success: true, user });
             } else {
-                res.status(401).json({ success: false, message: 'Invalid email or password' });
+                res.status(200).json({ success: false });
             }
         });
     } catch (error) {
